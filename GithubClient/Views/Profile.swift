@@ -19,11 +19,11 @@ struct Profile: View {
                 Text("jxherrera")
                     .font(.headline)
                     .padding(.vertical)
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+                Text("lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at massa sit amet risus hendrerit")
                     .font(.caption)
             }
             .padding()
-            .navigationTitle("Perfil")
+            .navigationTitle("Perfil de usuario")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
