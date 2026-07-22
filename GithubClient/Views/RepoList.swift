@@ -2,38 +2,34 @@
 //  RepoList.swift
 //  GithubClient
 //
-//  Created by Usuario invitado on 8/7/26.
+//  Created by Usuario invitado on 15/7/26.
 //
 
 import SwiftUI
 
 struct RepoList: View {
-    @StateObject var viewController = RepoListViewController()
-    
+
+    @StateObject private var viewController = RepoListViewController()
+
     var body: some View {
         NavigationStack {
-                Group {
-                    if viewController.isLoading {
-                        ProgressView("Cargando repositorios...")
-                    } else if let errorMsg = viewController.errorMsg {
-                        Text(errorMsg)
-                            .foregroundStyle(.red)
-                            .padding()
-                    } else {
-                        List(viewController.repos) { repo in
-                            RepoItem(repository: repo)
-                        }
+            Group {
+                if viewController.isLoading {
+                    ProgressView("Cargando repositorios...")
+                } else if let errorMsg = viewController.errorMsg {
+                    Text(errorMsg)
+                        .foregroundStyle(.red)
+                        .padding()
+                } else {
+                    List(viewController.repos) { repo in
+                        RepoItem(repository: repo)
                     }
-                    
-                
+                }
             }
-            .padding()
             .navigationTitle("Repositorios")
         }
-        .onAppear {
-            Task {
-                await viewController.loadRepos()
-            }
+        .task {
+            await viewController.loadRepos()
         }
     }
 }

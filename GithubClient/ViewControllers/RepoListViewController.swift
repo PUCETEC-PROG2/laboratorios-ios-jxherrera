@@ -15,7 +15,7 @@ class RepoListViewController: ObservableObject {
     
     private let githubService: GithubService
     
-    init(service: GithubService = .share) {
+    init(service: GithubService = .shared) {
         self.githubService = service
     }
     
